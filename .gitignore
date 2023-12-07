@@ -1,0 +1,9 @@
+# Project exclude paths
+/config/config.js
+/src/controllers/authController.js
+/src/controllers/testController.js
+/src/routes/authRoutes.js
+/src/routes/testRoutes.js
+/src/services/authService.js
+/src/services/keycloakService.js
+/src/utils/types/customTypes.js
