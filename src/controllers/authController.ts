@@ -1,8 +1,8 @@
-import { FastifyRequest, FastifyReply } from 'fastify';
-import { loginUser, refreshUserToken, logoutUser } from '../services/authService';
+import {FastifyReply, FastifyRequest} from 'fastify';
+import {loginUser, logoutUser, refreshUserToken} from '../services/authService';
 
 export const login = async (request: FastifyRequest, reply: FastifyReply) => {
-    const { username, password } = request.body as any; // Предполагаем, что эти поля существуют
+    const {username, password} = request.body as any; // Предполагаем, что эти поля существуют
     return await loginUser(username, password, request, reply);
 };
 

@@ -10,7 +10,7 @@ export default {
             password,
             grant_type: 'password'
         }), {
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         });
 
         return response.data;
@@ -23,7 +23,7 @@ export default {
             refresh_token: refreshToken,
             grant_type: 'refresh_token'
         }), {
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         });
 
         return response.data;
@@ -35,7 +35,7 @@ export default {
             client_secret: config.keycloak.clientSecret,
             refresh_token: refreshToken
         }), {
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         });
     }
 };

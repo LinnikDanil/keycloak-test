@@ -1,4 +1,4 @@
-import { FastifyRequest, FastifyReply, HookHandlerDoneFunction } from 'fastify';
+import {FastifyReply, FastifyRequest, HookHandlerDoneFunction} from 'fastify';
 import jwt from 'jsonwebtoken';
 import keycloakService from "../services/keycloakService";
 
@@ -10,20 +10,20 @@ export const checkTokensAndRole = (requiredRole: string) => {
         const refreshToken = sessionData?.refresh_token;
 
         if (!accessToken) {
-            reply.code(401).send({ error: 'Unauthorized: No access token' });
+            reply.code(401).send({error: 'Unauthorized: No access token'});
             return done(new Error('Unauthorized: No access token'));
         }
 
         if (!isAccessTokenValid(accessToken)) {
             // Access токен истек
             if (!refreshToken || !await refreshTokens(refreshToken, request)) {
-                reply.code(401).send({ error: 'Token refresh failed' });
+                reply.code(401).send({error: 'Token refresh failed'});
                 return done(new Error('Token refresh failed'));
             }
         }
 
         if (!hasUserRole(request.session.get('tokens')?.access_token || '', requiredRole)) {
-            reply.code(403).send({ error: 'Forbidden: Incorrect role' });
+            reply.code(403).send({error: 'Forbidden: Incorrect role'});
             return done(new Error('Forbidden: Incorrect role'));
         }
 

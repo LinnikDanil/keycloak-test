@@ -1,16 +1,16 @@
-import { FastifyRequest, FastifyReply } from 'fastify';
+import {FastifyReply, FastifyRequest} from 'fastify';
 import keycloakService from './keycloakService';
 import jwt from 'jsonwebtoken';
 
 export const loginUser = async (username: string, password: string, request: FastifyRequest, reply: FastifyReply) => {
     // Валидация логина и пароля
     if (!validateCredentials(username, password)) {
-        return reply.code(400).send({ error: 'Invalid username or password' });
+        return reply.code(400).send({error: 'Invalid username or password'});
     }
 
     // Проверка на существующую сессию
     if (request.session.get('tokens')) {
-        return reply.code(403).send({ message: 'Already logged in' });
+        return reply.code(403).send({message: 'Already logged in'});
     }
 
     try {
@@ -26,7 +26,7 @@ export const loginUser = async (username: string, password: string, request: Fas
             region: decodedToken.region
         });
     } catch (error) {
-        return reply.code(401).send({ error: 'Login failed' });
+        return reply.code(401).send({error: 'Login failed'});
     }
 };
 
@@ -45,9 +45,9 @@ export const refreshUserToken = async (refreshToken: string, request: FastifyReq
     try {
         const newTokenData = await keycloakService.refreshAccessToken(refreshToken);
         request.session.set('tokens', newTokenData);
-        return reply.send({ message: 'Token refreshed successfully' });
+        return reply.send({message: 'Token refreshed successfully'});
     } catch (error) {
-        return reply.code(401).send({ error: 'Token refresh failed' });
+        return reply.code(401).send({error: 'Token refresh failed'});
     }
 };
 
@@ -55,8 +55,8 @@ export const logoutUser = async (refreshToken: string, request: FastifyRequest, 
     try {
         await keycloakService.logout(refreshToken);
         request.session.delete();
-        return reply.send({ message: 'Logged out successfully' });
+        return reply.send({message: 'Logged out successfully'});
     } catch (error) {
-        return reply.code(401).send({ error: 'Logout failed' });
+        return reply.code(401).send({error: 'Logout failed'});
     }
 };

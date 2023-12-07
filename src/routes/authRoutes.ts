@@ -1,5 +1,5 @@
-import { FastifyInstance } from 'fastify';
-import { login, refresh, logout } from '../controllers/authController';
+import {FastifyInstance} from 'fastify';
+import {login, logout, refresh} from '../controllers/authController';
 import {LoginBody} from "../utils/types/customTypes";
 
 export default async function (fastify: FastifyInstance) {
