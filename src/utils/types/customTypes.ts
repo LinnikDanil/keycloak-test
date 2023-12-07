@@ -1,4 +1,5 @@
+// Интерфейс для тела запроса логина
 export interface LoginBody {
-    username: string;
-    password: string;
+    username: string; // Логин пользователя
+    password: string; // Пароль пользователя
 }

@@ -1,15 +1,16 @@
-import {FastifyReply, FastifyRequest} from 'fastify';
+import { FastifyReply, FastifyRequest } from 'fastify';
 
+// Обработчик для тестового эндпоинта
 export const testEndpoint = async (request: FastifyRequest, reply: FastifyReply) => {
-    return {message: 'Это тестовый эндпоинт'};
+    return { message: 'Это тестовый эндпоинт' };
 };
 
-// Эндпоинт для роли user
+// Эндпоинт для пользователей с ролью "user"
 export const clientUserEndpoint = async (request: FastifyRequest, reply: FastifyReply) => {
-    return {message: 'Доступ для роли USER'};
+    return { message: 'Доступ для роли USER' };
 };
 
-// Эндпоинт для роли admin
+// Эндпоинт для пользователей с ролью "admin"
 export const clientAdminEndpoint = async (request: FastifyRequest, reply: FastifyReply) => {
-    return {message: 'Доступ для роли ADMIN'};
+    return { message: 'Доступ для роли ADMIN' };
 };
